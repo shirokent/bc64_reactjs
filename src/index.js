@@ -7,6 +7,12 @@ import ChangeColor from "./components/StateDemoComponent/ChangeColor";
 import ChangeCar from "./components/StateDemoComponent/ChangeCar";
 import clsx from "clsx";
 import HomeTemplate from "./template/HomeTemplate";
+import AuthTemplate from "./template/AuthTemplate";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/login";
+import Admin from "./pages/auth/Admin";
+import { Navigate } from "react-router-dom";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
 // 2 loại function component , class component
@@ -69,13 +75,23 @@ root.render(
     <Routes>
       {/* localhost:3000/shoe-store */}
 
-      <Route path="home" element={<HomeTemplate />}>
-        <Route path="" element={<div>Trang chủ</div>}></Route>
+      {/* Home template */}
+      <Route path="" element={<HomeTemplate />}>
+        <Route index element={<div>Trang chủ</div>}></Route>
         <Route path="/shoe-store" element={<ExShoeStore />}></Route>
+        <Route path="bt-change-color" element={<ChangeColor />}></Route>
+        <Route path="bt-change-car" element={<ChangeCar />}></Route>
       </Route>
 
-      <Route path="/bt-change-color" element={<ChangeColor />}></Route>
-      <Route path="/bt-change-car" element={<ChangeCar />}></Route>
+      {/* AuthTemplate */}
+      <Route path="auth" element={<AuthTemplate />}>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="register" element={<Register />}></Route>
+      </Route>
+
+      {/* path: (*) là tất cả những đường dẫn ko tồn tại trong đây */}
+      <Route path="admin" element={<Admin />}></Route>
+      <Route path="*" element={<Navigate />}></Route>
     </Routes>
   </BrowserRouter>
 );

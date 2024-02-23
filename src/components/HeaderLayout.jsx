@@ -52,9 +52,18 @@ export default class HeaderLayout extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Pricing
-                  </a>
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return "activve";
+                      } else {
+                        return "";
+                      }
+                    }, " nav-link")}
+                    to="/bt-form"
+                  >
+                    Bài tập form
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link disabled" aria-disabled="true">

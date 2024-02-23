@@ -7,6 +7,7 @@ export default class HomeTemplate extends Component {
     return (
       <div>
         <HeaderLayout />
+        {/* Outlet là phần nội dung thay đổi, Outlet của react-router-dom */}
         <Outlet />
         <footer className="bg-dark text-white p5">Đây là footer</footer>
       </div>
