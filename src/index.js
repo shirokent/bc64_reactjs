@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Card } from "./component/Card";
 import { AlertComponent } from "./component/AlertComponent";
 import HomeLayout from "./component/HomeLayout/HomeLayout";
+import ExRenderListProduct from "./component/Props/ExRenderListProduct/ExRenderListProduct";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // jsx: => html được viết trong file js (nền js) được gọi là jsx
@@ -17,6 +18,7 @@ root.render(
 
     {/* <AlertComponent /> */}
     <HomeLayout />
+    <ExRenderListProduct />
   </div>
 );
 
