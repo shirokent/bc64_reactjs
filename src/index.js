@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import ExShoeStore from './components/Props/ExShoeStore/ExShoeStore';
-import ChangeColor from './components/StateDemoComponent/ChangeColor';
-import ChangeCar from './components/StateDemoComponent/ChangeCar';
-import clsx from 'clsx';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import ExShoeStore from "./components/Props/ExShoeStore/ExShoeStore";
+import ChangeColor from "./components/StateDemoComponent/ChangeColor";
+import ChangeCar from "./components/StateDemoComponent/ChangeCar";
+import clsx from "clsx";
+import HomeTemplate from "./template/HomeTemplate";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
 // 2 loại function component , class component
 root.render(
@@ -18,7 +19,7 @@ root.render(
       style={(props) => {
         if (props.isActive) {
           return {
-            textDecoration: 'none',
+            textDecoration: "none",
           };
         }
       }}
@@ -29,9 +30,9 @@ root.render(
     <NavLink
       className={(props) => {
         if (props.isActive) {
-          return 'text-warning mx-2 ';
+          return "text-warning mx-2 ";
         } else {
-          return 'text-danger mx-2';
+          return "text-danger mx-2";
         }
       }}
       to="/bt-change-color"
@@ -41,9 +42,9 @@ root.render(
     <NavLink
       className={(props) => {
         if (props.isActive) {
-          return 'text-warning';
+          return "text-warning";
         } else {
-          return 'text-danger';
+          return "text-danger";
         }
       }}
       to="/bt-change-car"
@@ -51,7 +52,7 @@ root.render(
       Bài tập đổi xe
     </NavLink>
 
-    {/* clsx cho phép viết class qua dạng (A,B,C) */}
+    {/* clsx cho phép viết class qua dạng (A,B,C)
     <NavLink
       className={clsx((props) => {
         if (props.isActive) {
@@ -63,15 +64,18 @@ root.render(
       to=""
     >
       Trang chủ
-    </NavLink>
+    </NavLink> */}
 
     <Routes>
       {/* localhost:3000/shoe-store */}
 
-      <Route path="" element={<div>Trang chủ</div>}></Route>
-      <Route path="/shoe-store" element={<ExShoeStore />}></Route>
+      <Route path="home" element={<HomeTemplate />}>
+        <Route path="" element={<div>Trang chủ</div>}></Route>
+        <Route path="/shoe-store" element={<ExShoeStore />}></Route>
+      </Route>
+
       <Route path="/bt-change-color" element={<ChangeColor />}></Route>
       <Route path="/bt-change-car" element={<ChangeCar />}></Route>
     </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
 );
