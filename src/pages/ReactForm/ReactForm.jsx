@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import ProductForm from "./ProductForm";
+import React, { Component } from 'react';
+import ProductForm from './ProductForm';
 
 export default class ReactForm extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class ReactForm extends Component {
 
         <ProductForm />
 
-        <table className="table">
+        <table className="table container mt-4">
           <thead>
             <th>id</th>
             <th>name</th>
@@ -18,6 +18,17 @@ export default class ReactForm extends Component {
             <th>Action</th>
           </thead>
         </table>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

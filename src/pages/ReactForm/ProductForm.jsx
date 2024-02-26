@@ -2,24 +2,45 @@ import React, { Component } from "react";
 
 export default class ProductForm extends Component {
   state = {
-    id: "",
-    tenSp: "",
-    img: "",
-    price: "",
+    value: {
+      id: "",
+      tenSp: "",
+      img: "",
+      price: "",
+    },
+    errValue: {
+      id: "",
+      tenSp: "",
+      img: "",
+      price: "",
+    },
   };
-
   handleChangeInput = (e) => {
+    // e.target đại diện cho thẻ input
+
     let tag = e.target;
     let nameInput = tag.name;
-    console.log("😢 ~ ProductForm ~ nameInput", nameInput);
-    // console.log("value", tag.value);
-    // console.log("name", tag.name );
+    // clone value hiện tại
+    let newValue = { ...this.state.value };
+    // sửa tại value của key đó
+    newValue[nameInput] = tag.value;
+
+    // xử lý err
+    let newErrValue = { ...this.state.errValue };
+    let message = "";
+
+    if (newValue[nameInput] === "") {
+      message = `${nameInput} cannot be blank !`;
+    }
+    newErrValue[nameInput] = message;
+
     this.setState({
-      [nameInput]: tag.value,
+      value: newValue,
+      errValue: newErrValue,
     });
   };
-
   render() {
+    console.log("state", this.state);
     return (
       <div className="container mt-5">
         <h2>Form Nhập Thông Tin Sản Phẩm</h2>
@@ -31,12 +52,17 @@ export default class ProductForm extends Component {
                   ID
                 </label>
                 <input
+                  datatype="number"
                   type="text"
                   className="form-control"
                   name="id"
+                  id="xinchaobc64"
                   placeholder="Nhập ID sản phẩm"
                   onInput={this.handleChangeInput}
                 />
+                <p style={{ height: "30px" }} className="text-danger">
+                  {this.state.errValue.id}
+                </p>
               </div>
               <div className="mb-3">
                 <label htmlFor="productName" className="form-label">
@@ -49,6 +75,9 @@ export default class ProductForm extends Component {
                   placeholder="Nhập tên sản phẩm"
                   onInput={this.handleChangeInput}
                 />
+                <p style={{ height: "30px" }} className="text-danger">
+                  {this.state.errValue.tenSp}
+                </p>
               </div>
             </div>
             <div className="col-md-6">
@@ -63,6 +92,9 @@ export default class ProductForm extends Component {
                   placeholder="Nhập URL hình ảnh sản phẩm"
                   onInput={this.handleChangeInput}
                 />
+                <p style={{ height: "30px" }} className="text-danger">
+                  {this.state.errValue.img}
+                </p>
               </div>
               <div className="mb-3">
                 <label htmlFor="productPrice" className="form-label">
@@ -75,6 +107,9 @@ export default class ProductForm extends Component {
                   placeholder="Nhập giá sản phẩm"
                   onInput={this.handleChangeInput}
                 />
+                <p style={{ height: "30px" }} className="text-danger">
+                  {this.state.errValue.price}
+                </p>
               </div>
             </div>
           </div>

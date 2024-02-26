@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class Login extends Component {
   render() {
     return (
       <div>
-        <form>
+        <form className="border rounded-2 p-3">
           <h3>Form đăng nhập</h3>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
