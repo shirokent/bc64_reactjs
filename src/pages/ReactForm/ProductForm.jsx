@@ -14,11 +14,13 @@ export default class ProductForm extends Component {
       img: "",
       price: "",
     },
+    isSubmit: false,
   };
   handleChangeInput = (e) => {
     // e.target đại diện cho thẻ input
 
     let tag = e.target;
+    let dataType = e.target.getAttribute("data-type");
     let nameInput = tag.name;
     // clone value hiện tại
     let newValue = { ...this.state.value };
@@ -31,20 +33,71 @@ export default class ProductForm extends Component {
 
     if (newValue[nameInput] === "") {
       message = `${nameInput} cannot be blank !`;
+    } else {
+      if (dataType) {
+        switch (dataType) {
+          case "number":
+            {
+              let regex = /^(?:[1-9]\d{0,2}|1000)$/;
+              if (!regex.test(newValue[nameInput])) {
+                message = "* Trường này chỉ nhận số";
+              }
+            }
+            break;
+          case "string":
+            {
+              let regex = /^[A-Za-z]+$/;
+              if (!regex.test(newValue[nameInput])) {
+                message = "* Trường này chỉ chữ";
+              }
+            }
+            break;
+          default: {
+          }
+        }
+      }
     }
     newErrValue[nameInput] = message;
+
+    // Xử lý nút submit
+    // Khi tất cả các giá trị err mà chỉ cần 1 trường có lỗi =>> lỗi
+    // chỉ 1 trường value mà "" => lỗi
+    let valid = true;
+    for (let key in newErrValue) {
+      if (newErrValue[key] !== "") {
+        valid = false;
+        break;
+      }
+    }
+
+    for (let key in newValue) {
+      if (newValue[key] === "") {
+        valid = false;
+        break;
+      }
+    }
 
     this.setState({
       value: newValue,
       errValue: newErrValue,
+      isSubmit: valid,
     });
   };
+  handleSubmit = (e) => {
+    // Sự kiện chặn load trang
+    e.preventDefault();
+    let { handleAddProduct } = this.props;
+    handleAddProduct(this.state.value);
+  };
   render() {
-    console.log("state", this.state);
+    // console.log("state", this.state);
+
+    let { id, tenSp, img, price } = this.props.productEdit;
+
     return (
       <div className="container mt-5">
         <h2>Form Nhập Thông Tin Sản Phẩm</h2>
-        <form className="border rounded-2 p-4">
+        <form onSubmit={this.handleSubmit} className="border rounded-2 p-4">
           <div className="row">
             <div className="col-md-6">
               <div className="mb-3">
@@ -52,13 +105,14 @@ export default class ProductForm extends Component {
                   ID
                 </label>
                 <input
-                  datatype="number"
+                  data-type="number"
                   type="text"
                   className="form-control"
                   name="id"
                   id="xinchaobc64"
                   placeholder="Nhập ID sản phẩm"
                   onInput={this.handleChangeInput}
+                  value={id}
                 />
                 <p style={{ height: "30px" }} className="text-danger">
                   {this.state.errValue.id}
@@ -70,10 +124,12 @@ export default class ProductForm extends Component {
                 </label>
                 <input
                   type="text"
+                  data-type="string"
                   className="form-control"
                   name="tenSp"
                   placeholder="Nhập tên sản phẩm"
                   onInput={this.handleChangeInput}
+                  value={tenSp}
                 />
                 <p style={{ height: "30px" }} className="text-danger">
                   {this.state.errValue.tenSp}
@@ -91,6 +147,7 @@ export default class ProductForm extends Component {
                   name="img"
                   placeholder="Nhập URL hình ảnh sản phẩm"
                   onInput={this.handleChangeInput}
+                  value={img}
                 />
                 <p style={{ height: "30px" }} className="text-danger">
                   {this.state.errValue.img}
@@ -106,6 +163,7 @@ export default class ProductForm extends Component {
                   name="price"
                   placeholder="Nhập giá sản phẩm"
                   onInput={this.handleChangeInput}
+                  value={price}
                 />
                 <p style={{ height: "30px" }} className="text-danger">
                   {this.state.errValue.price}
@@ -113,7 +171,11 @@ export default class ProductForm extends Component {
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button
+            disabled={!this.state.isSubmit}
+            type="submit"
+            className="btn btn-primary"
+          >
             Thêm Sản Phẩm
           </button>
         </form>
