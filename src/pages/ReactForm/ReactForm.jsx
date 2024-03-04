@@ -47,7 +47,7 @@ export default class ReactForm extends Component {
   };
 
   handleDeleteProduct = (idProduct) => {
-    console.log(idProduct);
+    // console.log(idProduct);
     let newArrPro = this.state.arrProduct.filter(
       (item) => item.id != idProduct
     );
@@ -58,6 +58,19 @@ export default class ReactForm extends Component {
     this.setState({ productEdit: proClick });
   };
 
+  handleUpdateProduct = (productUpdate) => {
+    console.log("productUpdate", productUpdate);
+    let index = this.state.arrProduct.findIndex(
+      (item) => item.id == productUpdate.id
+    );
+
+    this.state.arrProduct[index] = productUpdate;
+
+    this.setState({
+      arrProduct: this.state.arrProduct,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -66,6 +79,7 @@ export default class ReactForm extends Component {
         <ProductForm
           handleAddProduct={this.handleAddProduct}
           productEdit={this.state.productEdit}
+          handleUpdateProduct={this.handleUpdateProduct}
         />
 
         <table className="table container mt-4">

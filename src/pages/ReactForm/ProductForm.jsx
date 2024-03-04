@@ -89,10 +89,21 @@ export default class ProductForm extends Component {
     let { handleAddProduct } = this.props;
     handleAddProduct(this.state.value);
   };
+
+  static getDerivedStateFromProps(newProps, currentState) {
+    // Can thiệp trước khi render, lấy props product edit gán vào state
+    // Trả ra state mới để hàm lấy dữ liệu
+    if (newProps.productEdit.id !== currentState.value.id) {
+      // Hành động khi user click nút edit
+      currentState.value = { ...newProps.productEdit };
+    }
+    return currentState;
+  }
+
   render() {
     // console.log("state", this.state);
 
-    let { id, tenSp, img, price } = this.props.productEdit;
+    let { id, tenSp, img, price } = this.state.value;
 
     return (
       <div className="container mt-5">
@@ -177,6 +188,16 @@ export default class ProductForm extends Component {
             className="btn btn-primary"
           >
             Thêm Sản Phẩm
+          </button>
+          <button
+            disabled={!this.state.isSubmit}
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              this.props.handleUpdateProduct(this.state.value);
+            }}
+          >
+            Cập nhật sản phẩm
           </button>
         </form>
       </div>

@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import clsx from "clsx";
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 export default class HeaderLayout extends Component {
   render() {
@@ -32,11 +32,11 @@ export default class HeaderLayout extends Component {
                   <NavLink
                     className={clsx((props) => {
                       if (props.isActive) {
-                        return 'active';
+                        return "active";
                       } else {
-                        return '';
+                        return "";
                       }
-                    }, 'nav-link')}
+                    }, "nav-link")}
                     to=""
                   >
                     Trang chủ
@@ -46,12 +46,12 @@ export default class HeaderLayout extends Component {
                   <NavLink
                     className={clsx((props) => {
                       if (props.isActive) {
-                        return 'active';
+                        return "active";
                       } else {
-                        return '';
+                        return "";
                       }
-                    }, 'nav-link')}
-                    to="/shoe-store"
+                    }, "nav-link")}
+                    to="shoe-store"
                   >
                     Shoe Store
                   </NavLink>
@@ -60,12 +60,12 @@ export default class HeaderLayout extends Component {
                   <NavLink
                     className={clsx((props) => {
                       if (props.isActive) {
-                        return 'active';
+                        return "active";
                       } else {
-                        return '';
+                        return "";
                       }
-                    }, 'nav-link')}
-                    to="/bt-change-car"
+                    }, "nav-link")}
+                    to="bt-change-car"
                   >
                     Bài tập đổi xe
                   </NavLink>
@@ -74,14 +74,70 @@ export default class HeaderLayout extends Component {
                   <NavLink
                     className={clsx((props) => {
                       if (props.isActive) {
-                        return 'active';
+                        return "active";
                       } else {
-                        return '';
+                        return "";
                       }
-                    }, 'nav-link')}
-                    to="/bt-form"
+                    }, "nav-link")}
+                    to="bt-form"
                   >
                     Bài tập form
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return "active";
+                      } else {
+                        return "";
+                      }
+                    }, "nav-link")}
+                    to="bt-life-cycle"
+                  >
+                    Lifecycle
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return "active";
+                      } else {
+                        return "";
+                      }
+                    }, "nav-link")}
+                    to="redux-change-number"
+                  >
+                    Redux-change-number
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return "active";
+                      } else {
+                        return "";
+                      }
+                    }, "nav-link")}
+                    to="redux-change-fsize"
+                  >
+                    Redux-change-fsize
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return "active";
+                      } else {
+                        return "";
+                      }
+                    }, "nav-link")}
+                    to="redux-change-car"
+                  >
+                    Redux-change-car
                   </NavLink>
                 </li>
               </ul>
