@@ -3,16 +3,23 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = 19;
+const initialState = {
+  size: 19,
+};
 
 const fsizeReducer = createSlice({
   // Tên của reducer
   name: "fsizeReducer",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    changeFontSizeAction: (state, action) => {
+      console.log("😢 ~ action", action);
+      state.size += action.payload;
+    },
+  },
 });
 
-export const {} = fsizeReducer.actions;
+export const { changeFontSizeAction } = fsizeReducer.actions;
 
 export default fsizeReducer.reducer;
 

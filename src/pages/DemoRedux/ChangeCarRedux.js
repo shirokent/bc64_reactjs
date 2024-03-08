@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { changeCarAction } from "../../redux/reducers/imgReducer";
 
 class ChangeCarRedux extends Component {
   handleChangeCar = (img) => {
     // console.log("😢 ~ img", img);
     let { dispatch } = this.props;
-    const action = {
-      type: "HANDLE_CHANGE_CAR",
-      payload: img,
-    };
+
+    // const action = {
+    //   type: "HANDLE_CHANGE_CAR",
+    //   payload: img,
+    // };
+
+    const action = changeCarAction(img);
     dispatch(action);
   };
   render() {
@@ -17,7 +21,7 @@ class ChangeCarRedux extends Component {
       <div className="container">
         <div className="d-flex">
           <div className="w-50">
-            <img src={img} alt="" width={500} />
+            <img src={img.imgCar} alt="" width={500} />
           </div>
           <div className="w-50">
             <button

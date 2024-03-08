@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { changeFontSizeAction } from "../../redux/reducers/fsizeReducer";
 
 export class ChangeFontSizeRedux extends Component {
   render() {
@@ -8,22 +9,23 @@ export class ChangeFontSizeRedux extends Component {
       <div className="container">
         <h3
           style={{
-            fontSize: `${fsize}px`,
+            fontSize: `${fsize.size}px`,
           }}
         >
           lorem
         </h3>
         <button
           onClick={() => {
-            const action = {
-              type: "CHANGE_FSIZE_ACTION",
-              payload: 4,
-            };
+            // const action = {
+            //   type: "CHANGE_FSIZE_ACTION",
+            //   payload: 4,
+            // };
+            const action = changeFontSizeAction(1);
             dispatch(action);
           }}
           className="btn btn-success"
         >
-          Plus font size
+          Plus font size{""}
         </button>
       </div>
     );
